@@ -1,10 +1,17 @@
-function minimumTotal(triangle) {
-  const n = triangle.length;
-  const dp = new Array(n + 1).fill(0);
-  for (let i = n - 1; i >= 0; i--) {
-    for (let j = 0; j <= i; j++) {
-      dp[j] = triangle[i][j] + Math.min(dp[j], dp[j + 1]);
+function countPrimes(n) {
+  const isPrime = new Array(n).fill(true);
+  isPrime[0] = false;
+  isPrime[1] = false;
+  for (let i = 2; i * i < n; i++) {
+    if (isPrime[i]) {
+      for (let j = i * i; j < n; j += i) {
+        isPrime[j] = false;
+      }
     }
   }
-  return dp[0];
+  let count = 0;
+  for (let i = 2; i < n; i++) {
+    if (isPrime[i]) count++;
+  }
+  return count;
 }
