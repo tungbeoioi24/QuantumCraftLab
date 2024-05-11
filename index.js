@@ -1,14 +1,9 @@
-function wordBreak(s, wordDict) {
-  const wordSet = new Set(wordDict);
-  const dp = new Array(s.length + 1).fill(false);
-  dp[0] = true;
-  for (let end = 1; end <= s.length; end++) {
-    for (let start = 0; start < end; start++) {
-      if (dp[start] && wordSet.has(s.substring(start, end))) {
-        dp[end] = true;
-        break;
-      }
-    }
+function canJump(nums) {
+  let maxJump = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (i > maxJump) return false;
+    maxJump = Math.max(maxJump, i + nums[i]);
+    if (maxJump >= nums.length - 1) return true;
   }
-  return dp[s.length];
+  return false;
 }
