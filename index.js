@@ -1,9 +1,7 @@
-function canJump(nums) {
-  let maxJump = 0;
-  for (let i = 0; i < nums.length; i++) {
-    if (i > maxJump) return false;
-    maxJump = Math.max(maxJump, i + nums[i]);
-    if (maxJump >= nums.length - 1) return true;
+function countBits(num) {
+  const result = new Array(num + 1).fill(0);
+  for (let i = 1; i <= num; i++) {
+    result[i] = result[i >> 1] + (i & 1);
   }
-  return false;
+  return result;
 }
